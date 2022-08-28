@@ -47,6 +47,8 @@ public class MinMaxArrayTransformation {
 				acount = arr.length - i;
 				if (acount == bcount) {
 					acount = 0;
+					
+					
 					bcount = 0;
 					while (bcount-- > 0)
 						q.remove();
