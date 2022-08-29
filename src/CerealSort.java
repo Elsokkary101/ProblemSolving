@@ -3,89 +3,47 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class MinMaxArrayTransformation {
+public class CerealSort {
 	static PrintWriter pw = new PrintWriter(System.out);
 	static Scanner sc = new Scanner(System.in);
-
+	
 	public static void main(String[] args) throws IOException {
 		int n = sc.nextInt();
-		while (n-- > 0) {
-			int arr[] = new int[sc.nextInt()];
-			int b[] = new int[arr.length];
-
-			for (int i = 0; i < arr.length; i++)
-				arr[i] = sc.nextInt();
-			for (int i = 0; i < b.length; i++)
-				b[i] = sc.nextInt();
-			int dmax[] = new int[arr.length];
-			int dmin[] = new int[arr.length];
-
-			int acount = 0;
-			int bcount = 0;
-			int k = arr.length - 1;
-			Queue<Integer> q  = new LinkedList<Integer>();
-			
-			for (int i = 0 ; i  < arr.length ; i++)
-				q.add(arr[i]);
-			
-			int minVal = 0;
-			int maxVal = 0;
-
-			for (int i = arr.length - 1; i >= 0; i--) {
-				maxVal = q.peek();
-				
-				bcount = 0;
-				k = next(b,arr[i]);
-				minVal = b[k];
-
-				
-				bcount = arr.length - (k+1);
-				acount = arr.length - i;
-				if (acount == bcount) {
-					acount = 0;
-					bcount = 0;
-					while (bcount -- > 0)
-						q.remove();
-				}
-			
-
-				dmax[i] = maxVal - arr[i];
-				dmin[i] = minVal - arr[i];
-			}
-
-			for (int i = 0; i < dmin.length; i++)
-				pw.print(dmin[i] + " ");
-			pw.println();
-			for (int i = 0; i < dmax.length; i++)
-				pw.print(dmax[i] + " ");
-			pw.println();
-
+		int arr [] =  new int [n];
+		
+		for (int i = 0 ;i  < arr.length ; i++) arr[i] = sc.nextInt();
+		
+		Arrays.sort(arr);
+		int temp [] = new int [arr[arr.length-1] + 1];
+		
+		for (int i  = 0 ; i  < arr.length ; i++)
+			temp[arr[i]]++;
+//		boolean f = true;
+		
+		ArrayList<Integer> alist = new ArrayList<Integer>();
+		int m = 0;
+		for (int i = 0 ; i  < temp.length ; i++) {
+			if(temp[i] == 0)
+				continue;
+			alist.add(temp[i]);
 		}
+
+		int ans = 0;
+		m=  1;
+		for (int i = 0 ; i  < alist.size() ; i++) {
+			ans+= (i+1)*alist.get(i);
+		}
+		
+		
+		pw.println(ans);
+		
 		pw.flush();
 		pw.close();
-	}
-
-	public static int next(int[] arr, int target) {
-		int start = 0, end = arr.length - 1;
-
-		int ans = -1;
-		while (start <= end) {
-			int mid = (start + end) / 2;
-
-			// Move to right side if target is
-			// greater.
-			if (arr[mid] < target) {
-				start = mid + 1;
-			} else {
-				ans = mid;
-				end = mid - 1;
-			}
-		}
-		return ans;
+		 
 	}
 }
 
