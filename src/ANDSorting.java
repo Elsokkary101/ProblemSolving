@@ -15,7 +15,7 @@ public class ANDSorting {
 			int arr []  = new int [sc.nextInt()];
 			
 			for (int i = 0 ; i  <  arr.length ; i++)arr[i] = sc.nextInt();
-			long max = (1 << 30);
+			long max = (1 << 30)-1;
 			System.out.println(max);
 			for (int i=  0;i  < arr.length;i++) {
 				if (arr[i] == i)
