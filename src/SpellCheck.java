@@ -5,32 +5,70 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class ANDSorting {
+public class SpellCheck {
 	static PrintWriter pw = new PrintWriter(System.out);
 	static Scanner sc = new Scanner(System.in);
 	
-	public static void main(String[] args) throws IOException {
-		int n  = sc.nextInt();
-		while (n-- > 0 ) {
-			int arr []  = new int [sc.nextInt()];
+	public static void main(String[] args) throws IOException{
+		int n = sc.nextInt();
+		
+		while (n-- > 0) {
+			int t = sc.nextInt();
+			int x = 3*t;
+			int y = 3*t;
+			int z = 3*t;
 			
-			for (int i = 0 ; i  <  arr.length ; i++)arr[i] = sc.nextInt();
-			long max = (1 << 30)-1;
-			System.out.println(max);
-			for (int i=  0;i  < arr.length;i++) {
-				if (arr[i] == i)
-					continue;
-				else {
-					max &= arr[i];
+			
+			String str1 = sc.nextLine();
+			String str2 = sc.nextLine();
+			String str3 = sc.nextLine();
+		
+			
+			
+			String arr [] = str1.split(" ");
+			for (int i =  0 ; i  < arr.length ; i++) {
+				if (str2.contains(arr[i])) {
+					if (str3.contains(arr[i])) {
+						x-=3;
+						y-=3;
+						z-=3;
+					}else {
+						x-=2;
+						y-=2;
+					}
+					
+				}else if (str3.contains(arr[i])) {
+					x-=2;
+					z-=2;
 				}
 			}
-			pw.println(max);
+			
+			String arr2 [] = str2.split(" ");
+			
+			for (int i = 0 ; i  < arr2.length ; i++) {
+				if (str3.contains(arr2[i])) {
+					if (!str1.contains(arr2[i])) {
+						y-=2;
+						z-=2;	
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			
+			pw.println (x + " " +  y +  " " + z);
+			
+			
+			
 		}
 		pw.flush();
 		pw.close();
 	}
 }
-//
+
 //class Scanner {
 //	StringTokenizer st;
 //	BufferedReader br;
