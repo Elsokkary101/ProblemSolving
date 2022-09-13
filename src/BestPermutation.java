@@ -3,45 +3,37 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Stack;
+import java.util.StringTokenizer;
+import java.util.*;
 
-public class Combination {
+
+public class BestPermutation {
 	static PrintWriter pw = new PrintWriter(System.out);
 	static Scanner sc = new Scanner(System.in);
-	static boolean vis [] ;
-	static Stack<Integer> st =  new Stack<Integer>();
-	static int c = 0;
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int arr [] = {1,2,30,25,90};
-		vis = new boolean [arr.length];
-		for  (int i  = 0 ; i  <  vis.length ; i++) vis [i] =false;
-		comb(arr);
-		pw.println(c);
-		pw.flush();
-		pw.close();
-		
-		
+	public static void main(String[] args)throws IOException {
+		int n  = sc.nextInt();
+		while (n-- > 0) {
+			int t = sc.nextInt();
+			String str = "";
+			if (t%2 == 0) {
+				str = 1 + " "+ (t-1) + " " + t;
+				String temp = "";
+				for (int i = t-2 ; i  >= 2 ; i--) {
+					temp += i + " ";
+				}
+				str  = temp + str;
+			}else {
+				str = 2 + " " + 3 + " " + 1 + " " + (t-1)+ " " + t;
+				String temp = "";
+				for (int i = t-2 ; i  >= 4 ; i--) {
+					temp+= i + " ";
+				}
+				str = temp + str;
+			}
+			System.out.println(str);
+		}	
 	}
 	
-	public static void comb (int arr []) {
-		if (st.size() == 3) {
-			c++;
-			System.out.println(st.toString());
-			return;
-		}
-		
-		for (int i = 0 ; i <  arr.length ; i++) {
-			if (!vis[i]) {
-				vis[i] = true;
-				st.add(arr[i]);
-				comb(arr);
-				st.pop();
-				vis[i] = false;
-			}
-		}
-		
-	}
 }
 
 //class Scanner {
